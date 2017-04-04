@@ -4,7 +4,10 @@ package lesson2.LinkedListImplementation;
  * Created by sergey on 04.04.17.
  */
 
+
 public class LinkedArrayList<T> {
+    int index = 0;
+
     class Node<T> {
         T value;
         Node(T value) {
@@ -14,36 +17,41 @@ public class LinkedArrayList<T> {
         Node next = null;
     }
 
-    Node vals = null;
-
     Node head = null;
     Node tail = null;
 
     // метод добавления элемента в список
-    void add(T entry) {
+    public void add(T entry) {
         Node current = new Node(entry);
 
-        if (vals == null) {
+        if (tail == null) {
             // список пустой, поэтому просто присваиваем ссылку
-            vals = head = tail = current;
+            head = tail = current;
+            System.out.println("Head");
         } else {
             // для новой ноды устанавливаем ссылку на предыдущую ноду
-            current.prev = vals;
             // для предыдущей на новую ноду
-            vals.next = current;
-            // передвигаем ссылку вперед
-            vals = tail = current;
+//            System.out.println(tail.prev.value);
+            tail.next = current;
+            current.prev = tail;
+            tail = current;
         }
     }
 
-    boolean contains(T elem) {
+    public boolean contains(T elem) {
         Node current = head;
         // проходим по списку
-        while(current.next != null) {
-            if (current.value == elem) {
+        if (current == null)
+            return false;
+
+        do {
+            System.out.println("current value " + current.value);
+            if (current.value == elem)
                 return true;
-            }
-        }
+            current = current.next;
+        } while(current != null);
+
+
         return false;
     }
 }
