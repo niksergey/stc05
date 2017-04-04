@@ -9,13 +9,15 @@ class LinkedArrayList<T> {
 
     public LinkedArrayList() {}
 
-    class Node<T> {
+    private static class Node<T> {
         T value;
+        Node<T> prev = null;
+        Node<T> next = null;
+
         Node(T value) {
             this.value = value;
         }
-        Node prev = null;
-        Node next = null;
+
     }
 
     Node<T> head = null;
