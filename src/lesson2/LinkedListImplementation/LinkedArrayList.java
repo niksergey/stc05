@@ -5,8 +5,9 @@ package lesson2.LinkedListImplementation;
  */
 
 
-public class LinkedArrayList<T> {
-    int index = 0;
+class LinkedArrayList<T> {
+
+    public LinkedArrayList() {}
 
     class Node<T> {
         T value;
@@ -17,12 +18,12 @@ public class LinkedArrayList<T> {
         Node next = null;
     }
 
-    Node head = null;
-    Node tail = null;
+    Node<T> head = null;
+    Node<T> tail = null;
 
     // метод добавления элемента в список
     public void add(T entry) {
-        Node current = new Node(entry);
+        Node<T> current = new Node<>(entry);
 
         if (tail == null) {
             // список пустой, поэтому просто присваиваем ссылку
@@ -39,7 +40,7 @@ public class LinkedArrayList<T> {
     }
 
     public boolean contains(T elem) {
-        Node current = head;
+        Node<T> current = head;
         // проходим по списку
         if (current == null)
             return false;
@@ -53,6 +54,21 @@ public class LinkedArrayList<T> {
 
 
         return false;
+    }
+
+    public void clear() {
+        Node<T> current = head;
+        if (current == null)
+            return;
+        Node<T> nextElem = null;
+        do {
+            nextElem = current.next;
+            current.next = null;
+            current.prev = null;
+        } while (nextElem != null);
+
+        head = tail = null;
+
     }
 }
 
