@@ -4,6 +4,7 @@ package lesson2.LinkedListImplementation;
  * Created by sergey on 04.04.17.
  */
 
+import java.util.LinkedList;
 
 class LinkedArrayList<T> {
 
@@ -20,8 +21,8 @@ class LinkedArrayList<T> {
 
     }
 
-    Node<T> head = null;
-    Node<T> tail = null;
+    private Node<T> head = null;
+    private Node<T> tail = null;
 
     // метод добавления элемента в список
     public void add(T entry) {
@@ -34,28 +35,26 @@ class LinkedArrayList<T> {
         } else {
             // для новой ноды устанавливаем ссылку на предыдущую ноду
             // для предыдущей на новую ноду
-//            System.out.println(tail.prev.value);
             tail.next = current;
             current.prev = tail;
             tail = current;
         }
     }
 
+    public int indexOf(T elem) {
+        int index = 0;
+        if (elem != null) {
+            for (Node<T> current = head; current != null; current = current.next) {
+                if (elem.equals(current.value))
+                    return index;
+                index++;
+            }
+        }
+        return -1;
+    }
+
     public boolean contains(T elem) {
-        Node<T> current = head;
-        // проходим по списку
-        if (current == null)
-            return false;
-
-        do {
-            System.out.println("current value " + current.value);
-            if (current.value == elem)
-                return true;
-            current = current.next;
-        } while(current != null);
-
-
-        return false;
+        return indexOf(elem) != -1;
     }
 
     public void clear() {

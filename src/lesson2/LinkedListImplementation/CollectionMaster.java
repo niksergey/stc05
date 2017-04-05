@@ -3,6 +3,7 @@ package lesson2.LinkedListImplementation;
 /**
  * Created by sergey on 04.04.17.
  */
+
 public class CollectionMaster {
     public static void main(String[] args) {
         LinkedArrayList<Integer> lst = new LinkedArrayList<>();
@@ -24,6 +25,6 @@ public class CollectionMaster {
         lst.add(49);
         lst.add(45);
 
-        System.out.println("Contains 45 " + lst.contains(45));
+        System.out.println("index element 45 " + lst.indexOf(45));
     }
 }
